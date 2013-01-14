@@ -1,0 +1,97 @@
+html {
+	
+	background-position: 18px 18px;	
+	
+	font-family: source sans pro, "Arial Narrow", "Helvetica Neue", Helvetica, Arial, Veranda, sans-serif;
+	
+	font-size: 16px;
+	line-height: 1.4;
+	
+	background: #fff url(../img/il-grid-trans.png) top left repeat;
+	font-weight: normal;	
+	color: #222;
+	
+	/*background: #fff url(../img/ps-grid-trans.png) top left repeat;
+	font-weight: bold;	
+	color: #222;*/
+}
+body {
+	text-align: center;
+}
+h1, h2, h3, h4 {
+	font-weight: normal;
+}
+h1 {
+	font-size: 300%;
+}
+h2 {
+	font-size: 200%;
+}
+h3 {
+	font-size: 150%;
+}
+h4 {
+	font-size: 125%;
+}
+a {
+	color: #ff4a4a;
+	text-decoration: none;
+	font-weight: bold;
+}
+a:hover {
+	border-bottom: 0px dotted;
+	color: #4a84ff;
+}
+.wrapper {
+	width: 80%;
+	max-width: 800px;
+	margin: 0 auto;
+	text-align: left;	
+}
+.wrapper > section {
+	border-top: 2px solid;
+	margin-bottom: 60px;
+	display: block;
+}
+.wrapper > section section {
+	border-top: 1px solid;
+	margin-top: 20px;
+}
+pre code {	
+	border: 1px solid rgba(0,0,0,0.25);
+	display: block;
+	padding: 10px;
+	white-space: pre;
+	max-height: 500px;
+	overflow: auto;	
+	
+	background: #fff;
+	color: #000;
+}
+ul.option {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	background: #222;
+	color: #fff;
+	display: inline-block;
+	}
+ul.option  li {
+	display: inline-block;
+	padding: 5px;
+}
+li.name {}
+li.type {
+	color: #c52727;
+	font-style: normal;
+}
+li.default.num {
+	color:#46a609;
+}
+li.default.res {
+	color:#399469;
+}
+footer {
+	font-size: smaller;
+	padding: 40px 0;
+}
