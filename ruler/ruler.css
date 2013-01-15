@@ -145,7 +145,12 @@ body {
 	line-height: 16px;
 	border: 1px solid rgba(0,0,0,0.5);
 	position: fixed;
-	left: 50%;
-	top: 50%;
+	white-space: no-wrap;
+	display: block;
+	overflow-y:hidden;
+	float: left;
+	text-align: left;
+	left: -50%;
+	top: -50%;
 	padding: 0 2px;
 }

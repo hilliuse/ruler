@@ -15,6 +15,7 @@ html {
 	font-weight: bold;	
 	color: #222;*/
 }
+
 body {
 	text-align: center;
 }
@@ -67,12 +68,18 @@ pre code {
 	
 	background: #fff;
 	color: #000;
+	
+	font-family: source code pro;
+	font-size: smaller;
+}
+code {
+	font-family: source code pro;
 }
 ul.option {
 	list-style-type: none;
 	padding: 0px;
 	margin: 0px;
-	background: #222;
+	background: #111;
 	color: #fff;
 	display: inline-block;
 	}
@@ -94,4 +101,12 @@ li.default.res {
 footer {
 	font-size: smaller;
 	padding: 40px 0;
+}
+::-webkit-scrollbar {
+	width: 9px;
+	height: 9px;
+}
+::-webkit-scrollbar-thumb {
+	background-color: #666;
+	-webkit-border-radius: 6px;
 }
