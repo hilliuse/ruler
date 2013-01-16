@@ -1,5 +1,5 @@
 /**
- * jQuery.Ruler v0.9
+ * jQuery.Ruler v1.1
  * Add Photoshop-like rulers and mouse position to a container element using jQuery.
  * http://ruler.hilliuse.com
  * 
@@ -43,7 +43,7 @@
 						//-($(window).scrollTop())
 					}
 					if (settings.showMousePos) {
-						$('.mousePosBox').html("x:" + (e.pageX-settings.hRuleSize+1) + ", y:" + (e.pageY-settings.vRuleSize+1) ).css({
+						$('.mousePosBox').html("x:" + (e.pageX-settings.vRuleSize) + ", y:" + (e.pageY-settings.hRuleSize) ).css({
 							top: e.pageY-($(document).scrollTop()) + 16,
 							left: e.pageX + 12
 						});
@@ -57,7 +57,7 @@
 			var $hRule = $('.hRule');
 			var $vRule = $('.vRule');
 			$hRule.empty();
-			$vRule.empty().height(0).height($vRule.parent().outerHeight());
+			$vRule.empty().height(0).outerHeight($vRule.parent().outerHeight());
 			
 			// Horizontal ruler ticks
 			var tickLabelPos = settings.vRuleSize;
@@ -98,16 +98,26 @@
 			var $this = $(this);
 			
 			// Attach rulers
-			$this.css("padding-left", settings.vRuleSize + 1 + "px");
-			$(vRule).height($this.outerHeight()).prependTo($this);
 			
+			// Should not need 1 min padding-top of 1px but it does
+			// will figure it out some other time
 			$this.css("padding-top", settings.hRuleSize + 1 + "px");
-			$(hRule).prependTo($this);
+			if (settings.hRuleSize > 0) {				
+				$(hRule).height(settings.hRuleSize).prependTo($this);
+			}
 			
-			$(corner).css({
-				width: settings.hRuleSize,
-				height: settings.vRuleSize
-			}).prependTo($this);
+			if (settings.vRuleSize > 0) {
+				var oldWidth = $this.outerWidth();
+				$this.css("padding-left", settings.vRuleSize + 1 + "px").outerWidth(oldWidth);
+				$(vRule).width(settings.vRuleSize).height($this.outerHeight()).prependTo($this);
+			}
+			
+			if ( (settings.vRuleSize > 0) && (settings.hRuleSize > 0) ) {
+				$(corner).css({
+					width: settings.vRuleSize,
+					height: settings.hRuleSize
+				}).prependTo($this);
+			}
 			
 			
 			var $hRule = $this.children('.hRule');
