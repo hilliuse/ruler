@@ -42,20 +42,20 @@ option(type:default)
 	
 ### vRuleSize
 
-vRuleSize(integer:18)
+vRuleSize(integer:18)  
 Width in pixels of the vertial ruler. Set to 0 to disable the vertical ruler.
 
 ### hRuleSize
 
-hRuleSize(integer:18)
+hRuleSize(integer:18)  
 Height in pixels of the horizontal ruler. Set to 0 to disable the horizontal ruler.
 
 ### showCrosshair
 
-showCrosshair(boolean:false)
+showCrosshair(boolean:false)  
 Enables a dotted crosshair that spans the entire page and tracks the cursor position. Disabled on touchscreen devices due to lack of a .mousemove() event.
 
 ### showMousePos
 
-showMousePos(boolean:true)
+showMousePos(boolean:true)  
 Enables an overlay box that indicates the cursor position within the rulers. Disabled on touchscreen devices due to lack of a .mousemove() event.
