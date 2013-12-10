@@ -25,7 +25,7 @@
 				hMouse = '<div class="hMouse"></div>',
 				mousePosBox = '<div class="mousePosBox">x: 50%, y: 50%</div>';
 		
-		if (!Modernizr.touch) {
+		if ((!window.Modernizer) || !Modernizr.touch) {
 			// Mouse crosshair
 			if (settings.showCrosshair) {
 				$('body').append(vMouse, hMouse);
