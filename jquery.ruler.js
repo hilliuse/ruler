@@ -10,6 +10,9 @@
 
 	$.fn.ruler = function(options) {
 	
+		var that = this;
+		var $that = $(that);
+
 		var defaults = {
 			vRuleSize: 18,
 			hRuleSize: 18,
@@ -20,10 +23,9 @@
 		
 		var hRule = '<div class="ruler hRule"></div>',
 				vRule = '<div class="ruler vRule"></div>',
-				corner = '<div class="ruler corner"></div>',
 				vMouse = '<div class="vMouse"></div>',
 				hMouse = '<div class="hMouse"></div>',
-				mousePosBox = '<div class="mousePosBox">x: 50%, y: 50%</div>';
+				mousePosBox = '<div class="mousePosBox">(0,0)</div>';
 		
 		if (!Modernizr.touch) {
 			// Mouse crosshair
@@ -43,10 +45,22 @@
 						//-($(window).scrollTop())
 					}
 					if (settings.showMousePos) {
-						$('.mousePosBox').html("x:" + (e.pageX-settings.vRuleSize) + ", y:" + (e.pageY-settings.hRuleSize) ).css({
-							top: e.pageY-($(document).scrollTop()) + 16,
-							left: e.pageX + 12
-						});
+						var pos = $(that).position();
+						var width = $that.width();
+						var height = $that.height();
+
+						var x = e.pageX - settings.vRuleSize - pos.left;
+						var y = e.pageY - settings.hRuleSize - pos.top;
+						if(x < 0 || y < 0 || x > (width - settings.vRuleSize) || y > (height - settings.hRuleSize)) {
+							$('.mousePosBox').css({ display: 'none'});
+						}
+						else {
+							$('.mousePosBox').html("(" + x + ", " + y +")" ).css({
+								top: e.pageY-($(document).scrollTop()) + 16,
+								left: e.pageX + 12,
+								display: 'inline'
+							});
+						}
 					}
 				});
 			}
@@ -73,9 +87,9 @@
 					newTickLabel = "<div class='tickMinor'></div>";
 					$(newTickLabel).css( "left", tickLabelPos+"px" ).appendTo($hRule);
 				}
-				tickLabelPos = (tickLabelPos + 5);				
+				tickLabelPos = (tickLabelPos + 5);
 			}//hz ticks
-			
+
 			// Vertical ruler ticks
 			tickLabelPos = settings.hRuleSize;
 			newTickLabel = "";
@@ -90,39 +104,24 @@
 					newTickLabel = "<div class='tickMinor'></div>";
 					$(newTickLabel).css( "top", tickLabelPos+"px" ).appendTo($vRule);
 				}
-				tickLabelPos = ( tickLabelPos + 5 );				
+				tickLabelPos = ( tickLabelPos + 5 );
 			}//vert ticks
 		});//resize
-		
+
 		return this.each(function() {
 			var $this = $(this);
-			
-			// Attach rulers
-			
-			// Should not need 1 min padding-top of 1px but it does
-			// will figure it out some other time
-			$this.css("padding-top", settings.hRuleSize + 1 + "px");
-			if (settings.hRuleSize > 0) {				
+			if (settings.hRuleSize > 0) {
 				$(hRule).height(settings.hRuleSize).prependTo($this);
 			}
-			
+
 			if (settings.vRuleSize > 0) {
 				var oldWidth = $this.outerWidth();
-				$this.css("padding-left", settings.vRuleSize + 1 + "px").outerWidth(oldWidth);
 				$(vRule).width(settings.vRuleSize).height($this.outerHeight()).prependTo($this);
 			}
-			
-			if ( (settings.vRuleSize > 0) && (settings.hRuleSize > 0) ) {
-				$(corner).css({
-					width: settings.vRuleSize,
-					height: settings.hRuleSize
-				}).prependTo($this);
-			}
-			
-			
+
 			var $hRule = $this.children('.hRule');
 			var $vRule = $this.children('.vRule');
-		
+
 			// Horizontal ruler ticks
 			var tickLabelPos = settings.vRuleSize;
 			var newTickLabel = "";
@@ -137,9 +136,9 @@
 					newTickLabel = "<div class='tickMinor'></div>";
 					$(newTickLabel).css( "left", tickLabelPos+"px" ).appendTo($hRule);
 				}
-				tickLabelPos = (tickLabelPos + 5);				
+				tickLabelPos = (tickLabelPos + 5);
 			}//hz ticks
-			
+
 			// Vertical ruler ticks
 			tickLabelPos = settings.hRuleSize;
 			newTickLabel = "";
@@ -154,10 +153,10 @@
 					newTickLabel = "<div class='tickMinor'></div>";
 					$(newTickLabel).css( "top", tickLabelPos+"px" ).appendTo($vRule);
 				}
-				tickLabelPos = ( tickLabelPos + 5 );				
-			}//vert ticks			
-			
-		});//each		
-		
+				tickLabelPos = ( tickLabelPos + 5 );
+			}//vert ticks
+
+		});//each
+
 	};//ruler
 })( jQuery );
