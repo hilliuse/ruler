@@ -9,7 +9,7 @@
 ;(function( $ ){
 
 	$.fn.ruler = function(options) {
-	
+		var container= $(this);
 		var defaults = {
 			vRuleSize: 18,
 			hRuleSize: 18,
@@ -28,11 +28,11 @@
 		if (!Modernizr.touch) {
 			// Mouse crosshair
 			if (settings.showCrosshair) {
-				$('body').append(vMouse, hMouse);
+				$(container).append(vMouse, hMouse);
 			}
 			// Mouse position
 			if (settings.showMousePos) {
-				$('body').append(mousePosBox);
+				$(container).append(mousePosBox);
 			}
 			// If either, then track mouse position
 			if (settings.showCrosshair || settings.showMousePos) {
